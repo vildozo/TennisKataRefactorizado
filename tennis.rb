@@ -84,6 +84,14 @@ class TennisGame2
     end
   end
 
+  def es_ganador(puntos_jugador1,puntos_jugador2)
+    if(puntos_jugador1>=4 and puntos_jugador2>=0 and (puntos_jugador1-puntos_jugador2)>=2)
+      return true
+    else
+      return false
+    end
+  end
+
   def score
       result = ""
       if (@p1points == @p2points and @p1points < 3)
@@ -97,7 +105,7 @@ class TennisGame2
 
       p1res = ""
       p2res = ""
-      #uno de los jugadores esta en 0 y el otro anoto puntos
+      #UNO DE LOS JUGADORES ESTA EN 0 Y EL OTRO ESTA GANANDO EN PUNTOS
       if (@p1points < 4 and @p2points < 4 and (@p1points-@p2points!=0) and (@p2points==0||@p1points==0))
           if (@p2points==0)
                 p1res = DevuelveValorDeAnotacion(@p1points)
@@ -110,10 +118,12 @@ class TennisGame2
                 result = p1res + "-" + p2res
           end
       else
+          #DETERMINAMOS LOS PUNTOS EN EL JUEGO SI SON INFERIORES A "FORTY" PARA AMBOS JUGADORES
           if ((@p1points>@p2points and @p1points < 4)||(@p2points>@p1points and @p2points < 4))
               
               result = DevuelveValorDeAnotacion(@p1points) + "-" + DevuelveValorDeAnotacion(@p2points)
           else
+            #DETERMINAMOS SI LA PUNTACION ESTA EN ADVANTAGE
               if(@p1points!=@p2points and (@p2points>=3 || @p1points >= 3))
                   if @p1points>@p2points
                       result = "Advantage " + @player1Name
@@ -123,14 +133,11 @@ class TennisGame2
               end          
           end
       end
-   
-
-   
-    
-    if (@p1points>=4 and @p2points>=0 and (@p1points-@p2points)>=2)
+   #DETERMINAMOS SI HAY UN GANADOR
+    if(es_ganador(@p1points,@p2points))
       result = "Win for " + @player1Name
     end
-    if (@p2points>=4 and @p1points>=0 and (@p2points-@p1points)>=2)
+    if(es_ganador(@p2points,@p1points))
       result = "Win for " + @player2Name
     end
     result
