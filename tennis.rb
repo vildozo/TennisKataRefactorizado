@@ -106,16 +106,12 @@ class TennisGame2
       p1res = ""
       p2res = ""
       #UNO DE LOS JUGADORES ESTA EN 0 Y EL OTRO ESTA GANANDO EN PUNTOS
-      if (@p1points < 4 and @p2points < 4 and (@p1points-@p2points!=0) and (@p2points==0||@p1points==0))
+      if (@p1points < 4 and @p2points < 4 and (@p1points!=@p2points) and (@p2points==0||@p1points==0))
           if (@p2points==0)
-                p1res = DevuelveValorDeAnotacion(@p1points)
-                p2res = "Love"
-                result = p1res + "-Love"
+                  result = DevuelveValorDeAnotacion(@p1points) + "-Love"
           end
           if (@p1points==0)
-                p2res =  DevuelveValorDeAnotacion(@p2points)
-                p1res = "Love"
-                result = p1res + "-" + p2res
+                result = "Love-" + DevuelveValorDeAnotacion(@p2points)
           end
       else
           #DETERMINAMOS LOS PUNTOS EN EL JUEGO SI SON INFERIORES A "FORTY" PARA AMBOS JUGADORES
