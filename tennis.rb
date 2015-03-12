@@ -113,17 +113,20 @@ class TennisGame2
           if ((@p1points>@p2points and @p1points < 4)||(@p2points>@p1points and @p2points < 4))
               
               result = DevuelveValorDeAnotacion(@p1points) + "-" + DevuelveValorDeAnotacion(@p2points)
+          else
+              if(@p1points!=@p2points and (@p2points>=3 || @p1points >= 3))
+                  if @p1points>@p2points
+                      result = "Advantage " + @player1Name
+                  else
+                      result = "Advantage " + @player2Name
+                  end
+              end          
           end
       end
    
 
    
-    if (@p1points > @p2points and @p2points >= 3)
-      result = "Advantage " + @player1Name
-    end
-    if (@p2points > @p1points and @p1points >= 3)
-      result = "Advantage " + @player2Name
-    end
+    
     if (@p1points>=4 and @p2points>=0 and (@p1points-@p2points)>=2)
       result = "Win for " + @player1Name
     end
