@@ -71,20 +71,23 @@ class TennisGame2
       p2Score()
     end
   end
-  def puntaje(punto)
+
+  def DevuelveValorDeAnotacion(punto)
     if (punto==0)
         return ("Love")
     elsif (punto==1)
         return ("Fifteen")
     elsif (punto==2)
         return ("Thirty")
+    elsif (punto==2)
+        return ("Deuce")
     end
   end
 
   def score
     result = ""
     if (@p1points == @p2points and @p1points < 3)
-      result=puntaje(@p1points)+"-All"
+      result=DevuelveValorDeAnotacion(@p1points)+"-All"
     end
     if (@p1points==@p2points and @p1points>2)
         result = "Deuce"
