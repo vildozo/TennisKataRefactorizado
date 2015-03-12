@@ -85,57 +85,39 @@ class TennisGame2
   end
 
   def score
-    result = ""
-    if (@p1points == @p2points and @p1points < 3)
-      result=DevuelveValorDeAnotacion(@p1points)+"-All"
-    end
-    if (@p1points==@p2points and @p1points>2)
-        result = "Deuce"
-    end
-    
-    p1res = ""
-    p2res = ""
-    if (@p1points < 4 and @p1points > 0 and @p2points==0)
-      p1res = DevuelveValorDeAnotacion(@p1points)
-      p2res = "Love"
-      result = p1res + "-" + p2res
-    end
-    if (@p2points < 4 and @p2points > 0 and @p1points==0)
-      p2res =  DevuelveValorDeAnotacion(@p2points)
-      p1res = "Love"
-      result = p1res + "-" + p2res
-    end
-    
-    if (@p1points>@p2points and @p1points < 4)
-      if (@p1points==2)
-        p1res="Thirty"
+      result = ""
+      if (@p1points == @p2points and @p1points < 3)
+          result=DevuelveValorDeAnotacion(@p1points)+"-All"
       end
-      if (@p1points==3)
-        p1res="Forty"
+      if (@p1points==@p2points and @p1points>2)
+          result = "Deuce"
       end
-      if (@p2points==1)
-        p2res="Fifteen"
+      
+
+
+      p1res = ""
+      p2res = ""
+      #uno de los jugadores esta en 0 y el otro anoto puntos
+      if (@p1points < 4 and @p2points < 4 and (@p1points-@p2points!=0) and (@p2points==0||@p1points==0))
+          if (@p2points==0)
+                p1res = DevuelveValorDeAnotacion(@p1points)
+                p2res = "Love"
+                result = p1res + "-Love"
+          end
+          if (@p1points==0)
+                p2res =  DevuelveValorDeAnotacion(@p2points)
+                p1res = "Love"
+                result = p1res + "-" + p2res
+          end
+      else
+          if ((@p1points>@p2points and @p1points < 4)||(@p2points>@p1points and @p2points < 4))
+              
+              result = DevuelveValorDeAnotacion(@p1points) + "-" + DevuelveValorDeAnotacion(@p2points)
+          end
       end
-      if (@p2points==2)
-        p2res="Thirty"
-      end
-      result = p1res + "-" + p2res
-    end
-    if (@p2points>@p1points and @p2points < 4)
-      if (@p2points==2)
-        p2res="Thirty"
-      end
-      if (@p2points==3)
-        p2res="Forty"
-      end
-      if (@p1points==1)
-        p1res="Fifteen"
-      end
-      if (@p1points==2)
-        p1res="Thirty"
-      end
-      result = p1res + "-" + p2res
-    end
+   
+
+   
     if (@p1points > @p2points and @p2points >= 3)
       result = "Advantage " + @player1Name
     end
