@@ -79,8 +79,8 @@ class TennisGame2
         return ("Fifteen")
     elsif (punto==2)
         return ("Thirty")
-    elsif (punto==2)
-        return ("Deuce")
+    elsif (punto==3)
+        return ("Forty")
     end
   end
 
@@ -95,30 +95,13 @@ class TennisGame2
     
     p1res = ""
     p2res = ""
-    if (@p1points > 0 and @p2points==0)
-      if (@p1points==1)
-        p1res = "Fifteen"
-      end
-      if (@p1points==2)
-        p1res = "Thirty"
-      end
-      if (@p1points==3)
-        p1res = "Forty"
-      end
+    if (@p1points < 4 and @p1points > 0 and @p2points==0)
+      p1res = DevuelveValorDeAnotacion(@p1points)
       p2res = "Love"
       result = p1res + "-" + p2res
     end
-    if (@p2points > 0 and @p1points==0)
-      if (@p2points==1)
-        p2res = "Fifteen"
-      end
-      if (@p2points==2)
-        p2res = "Thirty"
-      end
-      if (@p2points==3)
-        p2res = "Forty"
-      end
-      
+    if (@p2points < 4 and @p2points > 0 and @p1points==0)
+      p2res =  DevuelveValorDeAnotacion(@p2points)
       p1res = "Love"
       result = p1res + "-" + p2res
     end
